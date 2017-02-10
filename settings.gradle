@@ -1,1 +1,1 @@
-include ':app', ':themered'
+include ':app'

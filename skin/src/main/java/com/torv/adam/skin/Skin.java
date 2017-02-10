@@ -69,6 +69,30 @@ public enum Skin {
         }
     }
 
+    public int getLayoutId(String layoutName) {
+        return getId(layoutName, DEFTYPE_LAYOUT);
+    }
+
+    public int getViewId(String layoutName) {
+        return getId(layoutName, DEFTYPE_ID);
+    }
+
+    private int getId(String resName, String deftype) {
+        int id = -1;
+        if(null != mResources && !TextUtils.isEmpty(resName)) {
+            id = mResources.getIdentifier(resName, deftype, mCurrentPackageName);
+        }
+        return id;
+    }
+
+    public int getColor(String colorName) {
+        int color = -1;
+        if(!TextUtils.isEmpty(colorName) && null != mResources) {
+            color = mResources.getColor(mResources.getIdentifier(colorName, DEFTYPE_COLOR, mCurrentPackageName));
+        }
+        return color;
+    }
+
     private void savePackageNameToSP(Context context, String packageName) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -79,13 +103,5 @@ public enum Skin {
     private String getPackageNameFromSP(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getString(SP_KEY_PACKAGE_NAME, "");
-    }
-
-    public int getColor(String colorName) {
-        int color = -1;
-        if(!TextUtils.isEmpty(colorName) && null != mResources) {
-            color = mResources.getColor(mResources.getIdentifier(colorName, DEFTYPE_COLOR, mCurrentPackageName));
-        }
-        return color;
     }
 }

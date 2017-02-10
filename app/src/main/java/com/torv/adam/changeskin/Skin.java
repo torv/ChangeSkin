@@ -19,7 +19,15 @@ public enum Skin {
     public static final String BUNDLE_KEY_PACKAGE_NAME = "bundle_key_package_name";
     public static final String SP_KEY_PACKAGE_NAME = "sp_key_package_name";
 
-    public static final String DEFTYPE_COLOR = "color";
+    static final String DEFTYPE_DRAWABLE = "drawable";
+    static final String DEFTYPE_STRING = "string";
+    static final String DEFTYPE_STYLE = "style";
+    static final String DEFTYPE_LAYOUT = "layout";
+    static final String DEFTYPE_ID = "id";
+    static final String DEFTYPE_COLOR = "color";
+    static final String DEFTYPE_RAW = "raw";
+    static final String DEFTYPE_ANIM = "anim";
+    static final String DEFTYPE_ATTR = "attr";
 
     private static final String TAG = Skin.class.getSimpleName();
 
@@ -58,6 +66,7 @@ public enum Skin {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             mResources = context.getResources();
+            mCurrentPackageName = context.getPackageName();
         }
     }
 
